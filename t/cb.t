@@ -23,7 +23,7 @@ subtest good => sub {
         my ($response, $stats) = $handle->cv->recv;
         isa_ok($response, 'HTTP::Response');
         isa_ok($stats, 'HASH');
-        ok($response->is_success, "HTTP response from $GOOD_TEST_URL was successful");
+        like($response->code, qr/30\d/, "HTTP response from $GOOD_TEST_URL was successful");
     };
     is ($@, '', "callback didn't die");
 };

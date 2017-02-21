@@ -24,6 +24,6 @@ my (undef, undef, $response, $stats) = $cv->recv;
 isa_ok($response, 'HTTP::Response');
 isa_ok($stats, 'HASH');
 
-ok($response->is_success, "HTTP response from $TEST_URL was successful");
+like($response->code, qr/30\d/, "HTTP response from $TEST_URL was successful") or diag("Code: ".$response->code);
 
 # vim:syn=perl:ts=4:sw=4:et:ai
